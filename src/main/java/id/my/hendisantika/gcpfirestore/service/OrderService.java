@@ -1,8 +1,13 @@
 package id.my.hendisantika.gcpfirestore.service;
 
+import id.my.hendisantika.gcpfirestore.document.Order;
 import id.my.hendisantika.gcpfirestore.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
+
+import java.time.LocalDateTime;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +24,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 class OrderService {
     private final OrderRepository orderRepository;
+
+    @Transactional
+    public Mono<Order> createOrder(Order order) {
+        // Set the creation time
+        order.setTimestamp(LocalDateTime.now());
+
+        // Children are saved in cascade.
+        return orderRepository.save(order);
+    }
 }
