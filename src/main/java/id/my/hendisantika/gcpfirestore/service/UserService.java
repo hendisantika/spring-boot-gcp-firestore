@@ -33,4 +33,15 @@ public class UserService {
                                 .deleteById(p.getId())
                                 .thenReturn(p));
     }
+
+    public Mono<User> update(String id, User user) {
+        return this.userRepository.findById(id)
+                .flatMap(u -> {
+                    u.setId(id);
+                    u.setEmail(user.getEmail());
+                    u.setName(user.getName());
+                    u.setCountry(user.getCountry());
+                    return save(u);
+                }).switchIfEmpty(Mono.empty());
+    }
 }
