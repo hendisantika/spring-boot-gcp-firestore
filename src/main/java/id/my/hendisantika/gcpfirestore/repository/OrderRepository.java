@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
  * To change this template use File | Settings | File Templates.
  */
 @Repository
-interface OrderRepository extends FirestoreReactiveRepository<Order> {
+public interface OrderRepository extends FirestoreReactiveRepository<Order> {
 }
