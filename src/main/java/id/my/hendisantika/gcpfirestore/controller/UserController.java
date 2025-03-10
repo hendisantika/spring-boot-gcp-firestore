@@ -1,9 +1,15 @@
 package id.my.hendisantika.gcpfirestore.controller;
 
+import id.my.hendisantika.gcpfirestore.document.User;
 import id.my.hendisantika.gcpfirestore.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,4 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    private Mono<User> save(@RequestBody User user) {
+        return userService.save(user);
+    }
 }
