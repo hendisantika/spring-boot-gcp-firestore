@@ -25,4 +25,12 @@ public class UserService {
     public Mono<User> save(User user) {
         return userRepository.save(user);
     }
+
+    public Mono<User> delete(String id) {
+        return this.userRepository
+                .findById(id).flatMap(p ->
+                        this.userRepository
+                                .deleteById(p.getId())
+                                .thenReturn(p));
+    }
 }
