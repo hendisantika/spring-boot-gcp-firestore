@@ -1,8 +1,10 @@
 package id.my.hendisantika.gcpfirestore.service;
 
+import id.my.hendisantika.gcpfirestore.document.User;
 import id.my.hendisantika.gcpfirestore.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +21,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    public Mono<User> save(User user) {
+        return userRepository.save(user);
+    }
 }
