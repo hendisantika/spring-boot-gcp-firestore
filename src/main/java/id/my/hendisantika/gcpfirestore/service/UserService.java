@@ -4,6 +4,7 @@ import id.my.hendisantika.gcpfirestore.document.User;
 import id.my.hendisantika.gcpfirestore.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -43,5 +44,9 @@ public class UserService {
                     u.setCountry(user.getCountry());
                     return save(u);
                 }).switchIfEmpty(Mono.empty());
+    }
+
+    public Flux<User> findAll() {
+        return userRepository.findAll();
     }
 }
