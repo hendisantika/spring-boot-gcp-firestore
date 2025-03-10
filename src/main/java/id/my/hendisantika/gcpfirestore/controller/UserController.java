@@ -63,4 +63,8 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping(value = "/{id}")
+    private Mono<User> findUserById(@PathVariable String id) {
+        return userService.findById(id);
+    }
 }
