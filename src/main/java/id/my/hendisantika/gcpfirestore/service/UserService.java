@@ -53,4 +53,8 @@ public class UserService {
     public Mono<User> findById(String id) {
         return userRepository.findById(id);
     }
+
+    public Flux<User> findByCountry(String country) {
+        return userRepository.findByCountry(country);
+    }
 }
