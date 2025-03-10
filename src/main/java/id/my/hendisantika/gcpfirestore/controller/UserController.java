@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,6 +46,13 @@ public class UserController {
                         .ok("Deleted Successfully")))
                 .switchIfEmpty(Mono.just(ResponseEntity
                         .notFound().build()));
+    }
 
+    @PutMapping("/{id}")
+    private Mono<ResponseEntity<User>> update(@PathVariable String id, @RequestBody User user) {
+        return userService.update(id, user)
+                .flatMap(user1 -> Mono.just(ResponseEntity
+                        .ok(user1))).switchIfEmpty(Mono
+                        .just(ResponseEntity.notFound().build()));
     }
 }
