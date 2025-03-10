@@ -67,4 +67,9 @@ public class UserController {
     private Mono<User> findUserById(@PathVariable String id) {
         return userService.findById(id);
     }
+
+    @GetMapping(value = "/country/{name}")
+    private Flux<User> findAllUsersByCountry(@PathVariable String name) {
+        return userService.findByCountry(name);
+    }
 }
