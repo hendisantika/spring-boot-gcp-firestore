@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collectionName = "order_items")
-class OrderItem {
+public class OrderItem {
     private String description;
     private Long quantity;
 }

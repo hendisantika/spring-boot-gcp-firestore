@@ -24,7 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collectionName = "orders")
-class Order {
+public class Order {
     @DocumentId
     private String id;
     private String description;
